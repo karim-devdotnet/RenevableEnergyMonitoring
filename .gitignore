@@ -5,3 +5,9 @@
 /.vs
 /STEG/.vs/STEG/v16
 /STEG/STEG.Console/obj/Debug
+/REM/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
+/REM/REM.Data/obj
+/REM/REM.Model/obj
+/REM/REM.Service/obj
+/REM/REM.Web/bin
+/REM/REM.Web/obj
