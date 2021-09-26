@@ -2,10 +2,12 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Anmelden";
+    //Layout = null;
 }
 
-<h2>@ViewBag.Title.</h2>
+<br /><br /><br />
 <div class="row">
+    <div class="col-md-4"></div>
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -41,9 +43,6 @@
                         <input type="submit" value="Anmelden" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Als neuer Benutzer registrieren", "Register")
-                </p>
                 @* Aktivieren Sie diese Option, nachdem Sie die Kontobestätigung für die Funktion zum Zurücksetzen des Kennworts aktiviert haben.
                     <p>
                         @Html.ActionLink("Kennwort vergessen?", "ForgotPassword")
@@ -51,11 +50,8 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+    <div class="col-md-4"></div>
+
 </div>
 
 @section Scripts {

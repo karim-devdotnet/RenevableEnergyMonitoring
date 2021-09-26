@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Anwendungsname", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("REM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,7 +33,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-right">
             <p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
         </footer>
     </div>
