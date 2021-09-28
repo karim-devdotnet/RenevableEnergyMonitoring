@@ -58,6 +58,7 @@ namespace REM.Web.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            var users = MvcApplication.Users;
             return View();
         }
 
