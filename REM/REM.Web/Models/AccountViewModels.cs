@@ -51,7 +51,7 @@ namespace REM.Web.Models
          [Required]
          [Display(Name = "Login")]
 
-         public string login { get; set; }
+         public string Login { get; set; }
 
          [Required]
          [DataType(DataType.Password)]
