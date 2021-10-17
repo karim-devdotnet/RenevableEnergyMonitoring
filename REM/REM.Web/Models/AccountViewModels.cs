@@ -48,13 +48,14 @@ namespace REM.Web.Models
 
      public class LoginViewModel
      {
-         [Required]
+         [Required(ErrorMessage = "{0} est obligatoire.")]
          [Display(Name = "Login")]
 
          public string Login { get; set; }
 
-         [Required]
-         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "{0} est obligatoire.")]
+
+        [DataType(DataType.Password)]
          [Display(Name = "Password")]
          public string Password { get; set; }
 

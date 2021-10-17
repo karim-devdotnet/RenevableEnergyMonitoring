@@ -15,13 +15,12 @@
                 @Html.AntiForgeryToken()
                 <h4>Utilisez votre login et mot de passe pour connecter</h4>
                 <hr />
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.Partial("_ErrorBox")
                 <div class="form-group">
                     @Html.LabelFor(m => m.Login, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
-                       
+                        @Html.ValidationMessageFor(m => m.Login, null, new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -29,7 +28,7 @@
                     @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                    
+                        @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -46,9 +45,9 @@
                     </div>
                 </div>
                 @* Aktivieren Sie diese Option, nachdem Sie die Kontobestätigung für die Funktion zum Zurücksetzen des Kennworts aktiviert haben.
-                    <p>
-                        @Html.ActionLink("Kennwort vergessen?", "ForgotPassword")
-                    </p>*@
+            <p>
+                @Html.ActionLink("Kennwort vergessen?", "ForgotPassword")
+            </p>*@
             }
         </section>
     </div>
