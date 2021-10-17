@@ -26,5 +26,20 @@ namespace REM.Web.Controllers
         {
             FormsAuthentication.SignOut();
         }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception,
+                filterContext.RouteData.Values["controller"] as string,
+                filterContext.RouteData.Values["action"] as string);
+
+            filterContext.Result = new ViewResult()
+            {
+                ViewName = "~/Views/Shared/Error.cshtml",
+                ViewData = new ViewDataDictionary(model)
+            };
+
+            filterContext.ExceptionHandled = true;
+        }
     }
 }
