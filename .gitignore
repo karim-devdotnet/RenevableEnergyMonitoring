@@ -16,3 +16,8 @@
 /REM/.vs/REM/v16
 /REM/.vs/REM/DesignTimeBuild
 /REM/REM.Model/bin/Debug
+/REM/REM.Data/bin/Debug
+/REM/REM.Konsole/bin/Debug
+/REM/REM.Konsole/obj
+*.user
+/REM/REM.Service/bin/Debug/netstandard2.0
