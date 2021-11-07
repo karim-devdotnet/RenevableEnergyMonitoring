@@ -7,22 +7,25 @@ namespace REM.Model.Entities
 {
     public class Meteo
     {
-        [NotMapped]
-        private long _Id;
+        
 
         [Key]
-        public long Id
+        public string Id { get; set; } 
+
+        [NotMapped]
+        private DateTime _Timestamp;
+        public DateTime Timestamp
         {
             get
             {
-                return _Id;
+                return _Timestamp;
             }
             set
             {
-                _Id = Convert.ToInt64(Timestamp.ToString("yyyyMMddhhmm"));
+                _Timestamp = value;
+                Id =  _Timestamp.ToString("yyyyMMddhhmmss");
             }
         }
-        public DateTime Timestamp { get; set; }
         /// <summary>
         /// 
         /// </summary>
