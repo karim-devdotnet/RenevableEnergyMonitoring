@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="CSV\Daily_STEG_09_2011_06_12.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

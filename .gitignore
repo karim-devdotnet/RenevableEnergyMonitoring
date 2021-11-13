@@ -21,3 +21,4 @@
 /REM/REM.Konsole/obj
 *.user
 /REM/REM.Service/bin/Debug/netstandard2.0
+/REM/REM.Service/bin/Debug/netstandard2.1

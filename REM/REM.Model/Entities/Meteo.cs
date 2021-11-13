@@ -33,11 +33,11 @@ namespace REM.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        public int TemperatureOfModule { get; set; }
+        public decimal TemperatureOfModule { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int TemperatureAmbiante { get; set; }
+        public decimal TemperatureAmbiante { get; set; }
         /// <summary>
         /// 
         /// </summary>
