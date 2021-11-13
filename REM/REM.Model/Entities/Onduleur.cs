@@ -4,7 +4,12 @@ namespace REM.Model.Entities
 {
     public class Onduleur
     {
-        public int Id { get; set; }
+        public Onduleur()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
         /// <summary>
         /// 
@@ -26,6 +31,11 @@ namespace REM.Model.Entities
         /// 
         /// </summary>
         public decimal VL_Vdc { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal VL_Iac { get; set; }
         /// <summary>
         /// 
         /// </summary>

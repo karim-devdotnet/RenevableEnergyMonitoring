@@ -2,118 +2,158 @@
 using REM.Model.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Data;
 using System.IO;
 
 namespace REM.Konsole
 {
     class Program
     {
-       public class  Met
-        {
-            public DateTime d;
-            public Decimal irr;
-            public int tMod;
-            public int tAmb;
-            public decimal hum;
-            public decimal wind;
-                      
-        }
-
-
         static void Main(string[] args)
         {
-            using (var reader = new StreamReader(@"C:\Users\Montassar\Desktop\steg.csv"))
+
+            var dataTable = GetDataTable(@"C:\Users\karim\source\repos\RenevableEnergyMonitoring\REM\REM.Konsole\CSV\Daily_STEG_09_2011_06_12.csv", ';');
+
+            using (var db = new REMContext())
             {
-                reader.ReadLine();
+                List<Meteo> meteos = new List<Meteo>();
 
-                var line = reader.ReadLine();
-                var values = line.Split(';');
-                //List<Met> listM = new List<Met>();
-                Console.WriteLine(values[1]);
-
-                var m = new Met();
-                m.d = DateTime.Parse(values[0]);
-                m.irr = Convert.ToDecimal(values[1]);
-                //m.tMod = int.Parse(values[2]);
-                //m.irr = 1;
-               m.tMod = 0;
-                m.tAmb = 0; m.hum = 0;
-                m.wind = 0;
-                // m.tAmb = Int32.Parse(values[3]);
-                // m.hum = Convert.ToDecimal(values[4]);
-                //m.wind = Decimal.Parse(values[40]);
-
-
-                using (var db = new REMContext())
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    var meteo = new Meteo
+                    DateTime timestamp = DateTime.Parse(row["Timestamp"].ToString());
+                    var meteo = new Meteo();
+                    meteo.Timestamp = timestamp;
+                    meteo.Irradiance = Convert.ToDecimal(row["irradianza"].ToString());
+                    meteo.TemperatureOfModule = Convert.ToDecimal(row["t_modulo"].ToString());
+                    meteo.TemperatureAmbiante = Convert.ToDecimal(row["t_ambiente"].ToString());
+                    meteo.Humidity = Convert.ToDecimal(row["umidita"].ToString());
+                    meteo.SpeedOfWind = Convert.ToDecimal(row["Velocita_vento"].ToString());
+                    meteo.Onduleurs = new List<Onduleur>();
+
+                    //Ond1;
+                    var onduleur1 = new Onduleur
                     {
-                        Timestamp = m.d,
-                        Irradiance=m.irr,
-                        TemperatureOfModule=m.tMod,
-                        TemperatureAmbiante=m.tAmb,
-                        Humidity=m.hum,
-                        SpeedOfWind=m.wind,
+                        Timestamp = timestamp,
+                        Designation = "Onduleur1",
+                        VL_Vac = Convert.ToDecimal(row["VL_Vac01"].ToString()),
+                        VL_Fac = Convert.ToDecimal(row["VL_Fac01"].ToString()),
+                        VL_Pac = Convert.ToDecimal(row["VL_Pac01"].ToString()),
+                        VL_Vdc = Convert.ToDecimal(row["VL_Vdc01_01"].ToString()),
+                        VL_Iac = Convert.ToDecimal(row["VL_Iac01"].ToString()),
+                        Total = Convert.ToDecimal(row["VL_ETotal01"].ToString()),
 
                     };
-                    db.Meteos.Add(meteo);
-                    db.SaveChanges();
+                    meteo.Onduleurs.Add(onduleur1);
+
+                    //Ond2;
+                    var onduleur2 = new Onduleur
+                    {
+                        Timestamp = timestamp,
+                        Designation = "Onduleur2",
+                        VL_Vac = Convert.ToDecimal(row["VL_Vac02"].ToString()),
+                        VL_Fac = Convert.ToDecimal(row["VL_Fac02"].ToString()),
+                        VL_Pac = Convert.ToDecimal(row["VL_Pac02"].ToString()),
+                        VL_Vdc = Convert.ToDecimal(row["VL_Vdc02_01"].ToString()),
+                        VL_Iac = Convert.ToDecimal(row["VL_Iac02"].ToString()),
+                        Total = Convert.ToDecimal(row["VL_ETotal02"].ToString()),
+                    };
+                    meteo.Onduleurs.Add(onduleur2);
+
+                    //Ond3;
+                    var onduleur3 = new Onduleur
+                    {
+                        Timestamp = timestamp,
+                        Designation = "Onduleur3",
+                        VL_Vac = Convert.ToDecimal(row["VL_Vac03"].ToString()),
+                        VL_Fac = Convert.ToDecimal(row["VL_Fac03"].ToString()),
+                        VL_Pac = Convert.ToDecimal(row["VL_Pac03"].ToString()),
+                        VL_Vdc = Convert.ToDecimal(row["VL_Vdc03_01"].ToString()),
+                        VL_Iac = Convert.ToDecimal(row["VL_Iac03"].ToString()),
+                        Total = Convert.ToDecimal(row["VL_ETotal03"].ToString()),
+                    };
+                    meteo.Onduleurs.Add(onduleur3);
+
+                    //Ond4;
+                    var onduleur4 = new Onduleur
+                    {
+                        Timestamp = timestamp,
+                        Designation = "Onduleur4",
+                        VL_Vac = Convert.ToDecimal(row["VL_Vac04"].ToString()),
+                        VL_Fac = Convert.ToDecimal(row["VL_Fac04"].ToString()),
+                        VL_Pac = Convert.ToDecimal(row["VL_Pac04"].ToString()),
+                        VL_Vdc = Convert.ToDecimal(row["VL_Vdc04_01"].ToString()),
+                        VL_Iac = Convert.ToDecimal(row["VL_Iac04"].ToString()),
+                        Total = Convert.ToDecimal(row["VL_ETotal04"].ToString()),
+                    };
+                    meteo.Onduleurs.Add(onduleur4);
+
+                    //Ond5;
+                    var onduleur5 = new Onduleur
+                    {
+                        Timestamp = timestamp,
+                        Designation = "Onduleur5",
+                        VL_Vac = Convert.ToDecimal(row["VL_Vac05"].ToString()),
+                        VL_Fac = Convert.ToDecimal(row["VL_Fac05"].ToString()),
+                        VL_Pac = Convert.ToDecimal(row["VL_Pac05"].ToString()),
+                        VL_Vdc = Convert.ToDecimal(row["VL_Vdc05_01"].ToString()),
+                        VL_Iac = Convert.ToDecimal(row["VL_Iac05"].ToString()),
+                        Total = Convert.ToDecimal(row["VL_ETotal05"].ToString()),
+                    };
+                    meteo.Onduleurs.Add(onduleur5);
+
+                    //Ond6;
+                    var onduleur6 = new Onduleur
+                    {
+                        Timestamp = timestamp,
+                        Designation = "Onduleur6",
+                        VL_Vac = Convert.ToDecimal(row["VL_Vac06"].ToString()),
+                        VL_Fac = Convert.ToDecimal(row["VL_Fac06"].ToString()),
+                        VL_Pac = Convert.ToDecimal(row["VL_Pac06"].ToString()),
+                        VL_Vdc = Convert.ToDecimal(row["VL_Vdc06_01"].ToString()),
+                        VL_Iac = Convert.ToDecimal(row["VL_Iac06"].ToString()),
+                        Total = Convert.ToDecimal(row["VL_ETotal06"].ToString()),
+                    };
+                    meteo.Onduleurs.Add(onduleur6);
+
+                    //db.Meteos.Add(meteo);
+                    //db.SaveChanges();
+
+                    meteos.Add(meteo);
                 }
+
+                db.Meteos.AddRange(meteos);
+                db.SaveChanges();
             }
         }
-     }
 
- }
+        /// <summary>
+        /// Gibt den Inhalt einer CSV Datei in einer DataTable zurück
+        /// </summary>
+        /// <param name="path">Pfad der CSV Datei</param>
+        /// <param name="seperator">Zeichen mit dem die Spalten getrennt werden. Meist ';' oder ','</param>
+        /// <returns></returns>
+        private static DataTable GetDataTable(string path, char seperator)
+        {
+            DataTable dt = new DataTable();
+            FileStream aFile = new FileStream(path, FileMode.Open);
+            using (StreamReader sr = new StreamReader(aFile, System.Text.Encoding.Default))
+            {
+                string strLine = sr.ReadLine();
+                string[] strArray = strLine.Split(seperator);
 
+                foreach (string value in strArray)
+                    dt.Columns.Add(value.Trim());
 
-                    
+                DataRow dr = dt.NewRow();
 
-
-
-
-
-                    /*using (var db = new REMContext())
-                     {
-                         var meteo = new Meteo
-                         {
-                             //Timestamp = DateTime.Parse(values[0]),
-                             Timestamp = DateTime.Now,
-                             Irradiance = Convert.ToDecimal(values[1]),
-                             TemperatureOfModule= Int32.Parse(values[2]),
-                             TemperatureAmbiante=Int32.Parse(values[3]),
-                             Humidity=Convert.ToDecimal(values[4]),
-                             SpeedOfWind= Convert.ToDecimal(values[40]),
-
-
-                         };
-                         db.Meteos.Add(meteo);
-                         db.SaveChanges();
-
-                     }
-                 }
-             }
-
-             /*using (var db = new REMContext())
-             {
-                 var meteo = new Meteo
-                 {
-                     Timestamp = DateTime.Now,
-                     TemperatureOfModule = 100,
-                     TemperatureAmbiante=40,
-                     Onduleurs = new List<Onduleur>
-                     {
-                         new Onduleur{Id=1,Timestamp=DateTime.Now,Designation ="Ond1", VL_Fac=12,VL_Vac=4,VL_Pac=6, VL_Vdc=8},
-                         new Onduleur{Id=2,Timestamp=DateTime.Now,Designation ="Ond2", VL_Fac=12,VL_Vac=4,VL_Pac=6, VL_Vdc=8},
-                         new Onduleur{Id=3,Timestamp=DateTime.Now,Designation ="Ond3", VL_Fac=12,VL_Vac=4,VL_Pac=6, VL_Vdc=8}
-                     }
-                 };
-
-                 db.Meteos.Add(meteo);
-                 db.SaveChanges();*/
-
-
-             
-         
-     
-
+                while (sr.Peek() > -1)
+                {
+                    strLine = sr.ReadLine();
+                    strArray = strLine.Split(seperator);
+                    dt.Rows.Add(strArray);
+                }
+            }
+            return dt;
+        }
+    }
+}
