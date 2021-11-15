@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace REM.Konsole
 {
@@ -13,6 +15,8 @@ namespace REM.Konsole
              
         static void Main(string[] args)
         {
+            string pathFile= ConfigurationManager.AppSettings.Get("csvFolder")+ "\\Daily_STEG_09_2011_06_12.csv";
+
             decimal ToDec(string rowData)
             {
                 if (rowData == "")
@@ -21,7 +25,7 @@ namespace REM.Konsole
                 }
                 return Convert.ToDecimal(rowData, new CultureInfo("en-US"));
             }
-            var dataTable = GetDataTable(@"C:\Users\Montassar\source\repos\RenevableEnergyMonitoring\REM\REM.Konsole\CSV\Daily_STEG_09_2011_06_12.csv", ';');
+            var dataTable = GetDataTable(pathFile, ';');
 
             using (var db = new REMContext())
             {
@@ -136,13 +140,13 @@ namespace REM.Konsole
         }
 
         /// <summary>
-        /// Gibt den Inhalt einer CSV Datei in einer DataTable zurück
+        /// Renvoie le contenu d'un fichier CSV dans un DataTable
         /// </summary>
-        /// <param name="path">Pfad der CSV Datei</param>
-        /// <param name="seperator">Zeichen mit dem die Spalten getrennt werden. Meist ';' oder ','</param>
+        /// <param name="path">Chemin du fichier CSV</param>
+        /// <param name="seperator">Caractère utilisé pour séparer les colonnes. La plupart du temps ';' ou ','</param>
         /// <returns></returns>
         private static DataTable GetDataTable(string path, char seperator)
-        {
+        {       
             DataTable dt = new DataTable();
             FileStream aFile = new FileStream(path, FileMode.Open);
             using (StreamReader sr = new StreamReader(aFile, System.Text.Encoding.Default))
