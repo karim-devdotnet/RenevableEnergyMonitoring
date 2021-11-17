@@ -12,5 +12,6 @@ namespace REM.Data
 
         public DbSet<Meteo> Meteos { get; set; }
         public DbSet<Onduleur> Onduleurs { get; set; }
+        public DbSet<CsvImportHistory> CsvHistory { get; set; }
     }
 }

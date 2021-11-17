@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Configuration;
 using System.Collections.Specialized;
+using System.Data.Sql;
 
 namespace REM.Konsole
 {
@@ -15,7 +16,8 @@ namespace REM.Konsole
              
         static void Main(string[] args)
         {
-            string pathFile= ConfigurationManager.AppSettings.Get("csvFolder")+ "\\Daily_STEG_09_2011_06_12.csv";
+            string NomFichier = "Daily_STEG_09_2011_06_12.csv";
+            string pathFile= ConfigurationManager.AppSettings.Get("csvFolder")+"\\"+ NomFichier;
 
             decimal ToDec(string rowData)
             {
@@ -25,6 +27,7 @@ namespace REM.Konsole
                 }
                 return Convert.ToDecimal(rowData, new CultureInfo("en-US"));
             }
+
             var dataTable = GetDataTable(pathFile, ';');
 
             using (var db = new REMContext())
@@ -128,14 +131,22 @@ namespace REM.Konsole
                     };
                     meteo.Onduleurs.Add(onduleur6);
 
-                    //db.Meteos.Add(meteo);
-                    //db.SaveChanges();
-
+                    //Création du tableau de l'historique
+                    
                     meteos.Add(meteo);
                 }
 
+                var CsvImport = new CsvImportHistory
+                {
+                    Timestamp = DateTime.Now,
+                    NameFile = NomFichier,
+                    NbrLine = meteos.Count,
+                };
+
                 db.Meteos.AddRange(meteos);
+                db.CsvHistory.Add(CsvImport);
                 db.SaveChanges();
+                 
             }
         }
 
