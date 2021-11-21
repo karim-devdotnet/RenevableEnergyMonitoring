@@ -16,7 +16,7 @@ namespace REM.Model.Entities
         public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
         public string NameFile { get; set; }
-        public int NbrLine { get; set; }
+        public int CountImportedRecords { get; set; }
         
     }
     

@@ -19,14 +19,7 @@ namespace REM.Konsole
             string NomFichier = "Daily_STEG_09_2011_06_12.csv";
             string pathFile= ConfigurationManager.AppSettings.Get("csvFolder")+"\\"+ NomFichier;
 
-            decimal ToDec(string rowData)
-            {
-                if (rowData == "")
-                {
-                    return 0;
-                }
-                return Convert.ToDecimal(rowData, new CultureInfo("en-US"));
-            }
+            
 
             var dataTable = GetDataTable(pathFile, ';');
 
@@ -39,99 +32,36 @@ namespace REM.Konsole
                     DateTime timestamp = DateTime.Parse(row["Timestamp"].ToString());
                     var meteo = new Meteo();
                     meteo.Timestamp = timestamp;
-                    meteo.Irradiance = ToDec(row["irradianza"].ToString());
-                    meteo.TemperatureOfModule = ToDec(row["t_modulo"].ToString());
-                    meteo.TemperatureAmbiante = ToDec(row["t_ambiente"].ToString());
-                    meteo.Humidity = ToDec(row["umidita"].ToString());
-                    meteo.SpeedOfWind = ToDec(row["Velocita_vento"].ToString());
+                    meteo.Irradiance = ToDecimal(row["irradianza"].ToString());
+                    meteo.TemperatureOfModule = ToDecimal(row["t_modulo"].ToString());
+                    meteo.TemperatureAmbiante = ToDecimal(row["t_ambiente"].ToString());
+                    meteo.Humidity = ToDecimal(row["umidita"].ToString());
+                    meteo.SpeedOfWind = ToDecimal(row["Velocita_vento"].ToString());
                     meteo.Onduleurs = new List<Onduleur>();
 
                     //Ond1;
-                    var onduleur1 = new Onduleur
-                    {
-                        Timestamp = timestamp,
-                        Designation = "Onduleur1",
-                        VL_Vac = ToDec(row["VL_Vac01"].ToString()),
-                        VL_Fac = ToDec(row["VL_Fac01"].ToString()),
-                        VL_Pac = ToDec(row["VL_Pac01"].ToString()),
-                        VL_Vdc = ToDec(row["VL_Vdc01_01"].ToString()),
-                        VL_Iac = ToDec(row["VL_Iac01"].ToString()),
-                        Total = ToDec(row["VL_ETotal01"].ToString()),
-
-                    };
+                    var onduleur1 = GetOnduleur(row, timestamp, 1);
                     meteo.Onduleurs.Add(onduleur1);
 
                     //Ond2;
-                    var onduleur2 = new Onduleur
-                    {
-                        Timestamp = timestamp,
-                        Designation = "Onduleur2",
-                        VL_Vac = ToDec(row["VL_Vac02"].ToString()),
-                        VL_Fac = ToDec(row["VL_Fac02"].ToString()),
-                        VL_Pac = ToDec(row["VL_Pac02"].ToString()),
-                        VL_Vdc = ToDec(row["VL_Vdc02_01"].ToString()),
-                        VL_Iac = ToDec(row["VL_Iac02"].ToString()),
-                        Total = ToDec(row["VL_ETotal02"].ToString()),
-                    };
+                    var onduleur2 = GetOnduleur(row, timestamp, 2);
                     meteo.Onduleurs.Add(onduleur2);
 
                     //Ond3;
-                    var onduleur3 = new Onduleur
-                    {
-                        Timestamp = timestamp,
-                        Designation = "Onduleur3",
-                        VL_Vac = ToDec(row["VL_Vac03"].ToString()),
-                        VL_Fac = ToDec(row["VL_Fac03"].ToString()),
-                        VL_Pac = ToDec(row["VL_Pac03"].ToString()),
-                        VL_Vdc = ToDec(row["VL_Vdc03_01"].ToString()),
-                        VL_Iac = ToDec(row["VL_Iac03"].ToString()),
-                        Total = ToDec(row["VL_ETotal03"].ToString()),
-                    };
+                    var onduleur3 = GetOnduleur(row, timestamp, 3);
                     meteo.Onduleurs.Add(onduleur3);
 
                     //Ond4;
-                    var onduleur4 = new Onduleur
-                    {
-                        Timestamp = timestamp,
-                        Designation = "Onduleur4",
-                        VL_Vac = ToDec(row["VL_Vac04"].ToString()),
-                        VL_Fac = ToDec(row["VL_Fac04"].ToString()),
-                        VL_Pac = ToDec(row["VL_Pac04"].ToString()),
-                        VL_Vdc = ToDec(row["VL_Vdc04_01"].ToString()),
-                        VL_Iac = ToDec(row["VL_Iac04"].ToString()),
-                        Total = ToDec(row["VL_ETotal04"].ToString()),
-                    };
+                    var onduleur4 = GetOnduleur(row, timestamp, 4);
                     meteo.Onduleurs.Add(onduleur4);
 
                     //Ond5;
-                    var onduleur5 = new Onduleur
-                    {
-                        Timestamp = timestamp,
-                        Designation = "Onduleur5",
-                        VL_Vac = ToDec(row["VL_Vac05"].ToString()),
-                        VL_Fac = ToDec(row["VL_Fac05"].ToString()),
-                        VL_Pac = ToDec(row["VL_Pac05"].ToString()),
-                        VL_Vdc = ToDec(row["VL_Vdc05_01"].ToString()),
-                        VL_Iac = ToDec(row["VL_Iac05"].ToString()),
-                        Total = ToDec(row["VL_ETotal05"].ToString()),
-                    };
+                    var onduleur5 = GetOnduleur(row, timestamp, 5);
                     meteo.Onduleurs.Add(onduleur5);
 
                     //Ond6;
-                    var onduleur6 = new Onduleur
-                    {
-                        Timestamp = timestamp,
-                        Designation = "Onduleur6",
-                        VL_Vac = ToDec(row["VL_Vac06"].ToString()),
-                        VL_Fac = ToDec(row["VL_Fac06"].ToString()),
-                        VL_Pac = ToDec(row["VL_Pac06"].ToString()),
-                        VL_Vdc = ToDec(row["VL_Vdc06_01"].ToString()),
-                        VL_Iac = ToDec(row["VL_Iac06"].ToString()),
-                        Total = ToDec(row["VL_ETotal06"].ToString()),
-                    };
+                    var onduleur6 = GetOnduleur(row, timestamp, 6);
                     meteo.Onduleurs.Add(onduleur6);
-
-                    //Création du tableau de l'historique
                     
                     meteos.Add(meteo);
                 }
@@ -140,7 +70,7 @@ namespace REM.Konsole
                 {
                     Timestamp = DateTime.Now,
                     NameFile = NomFichier,
-                    NbrLine = meteos.Count,
+                    CountImportedRecords = meteos.Count,
                 };
 
                 db.Meteos.AddRange(meteos);
@@ -178,6 +108,38 @@ namespace REM.Konsole
                 }
             }
             return dt;
+        }
+
+        private static decimal ToDecimal(string rowData)
+        {
+            try
+            {
+                if (rowData == "")
+                {
+                    return 0;
+                }
+                return Convert.ToDecimal(rowData, new CultureInfo("en-US"));
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        private static Onduleur GetOnduleur(DataRow row,DateTime timestamp, int index)
+        {
+            return new Onduleur
+            {
+                Timestamp = timestamp,
+                Designation = $"Onduleur{index}",
+                VL_Vac = ToDecimal(row[$"VL_Vac0{index}"].ToString()),
+                VL_Fac = ToDecimal(row[$"VL_Fac0{index}"].ToString()),
+                VL_Pac = ToDecimal(row[$"VL_Pac0{index}"].ToString()),
+                VL_Vdc = ToDecimal(row[$"VL_Vdc0{index}_01"].ToString()),
+                VL_Iac = ToDecimal(row[$"VL_Iac0{index}"].ToString()),
+                Total = ToDecimal(row[$"VL_ETotal0{index}"].ToString()),
+
+            };
         }
     }
 }

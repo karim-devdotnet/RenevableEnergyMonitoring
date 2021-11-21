@@ -48,5 +48,10 @@ namespace REM.Model.Entities
         public decimal SpeedOfWind { get; set; }
 
         public virtual ICollection<Onduleur> Onduleurs{ get; set; }
+
+        public override string ToString()
+        {
+            return $"ID:{Id}";
+        }
     }
 }
