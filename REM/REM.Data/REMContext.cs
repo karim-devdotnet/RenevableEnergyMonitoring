@@ -7,7 +7,7 @@ namespace REM.Data
     {
         public REMContext():base("DefaultConnection")
         {
-
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<Meteo> Meteos { get; set; }

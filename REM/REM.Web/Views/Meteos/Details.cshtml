@@ -1,0 +1,66 @@
+﻿@model REM.Model.Entities.Meteo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Meteo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Irradiance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Irradiance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TemperatureOfModule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TemperatureOfModule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TemperatureAmbiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TemperatureAmbiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Humidity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Humidity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeedOfWind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeedOfWind)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

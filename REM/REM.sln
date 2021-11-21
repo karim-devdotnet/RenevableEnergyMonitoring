@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "REM.Service", "REM.Service\REM.Service.csproj", "{0C0DDE6D-4187-49E3-AA01-FAE77A67E6CC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REM.Web", "REM.Web\REM.Web.csproj", "{9F2D19BA-A96E-4AB4-87A9-C3F1FE3B32D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REM.Konsole", "REM.Konsole\REM.Konsole.csproj", "{70CEDBE1-50A4-4D67-808E-B747B2D4EA10}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C0DDE6D-4187-49E3-AA01-FAE77A67E6CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C0DDE6D-4187-49E3-AA01-FAE77A67E6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C0DDE6D-4187-49E3-AA01-FAE77A67E6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C0DDE6D-4187-49E3-AA01-FAE77A67E6CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F2D19BA-A96E-4AB4-87A9-C3F1FE3B32D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F2D19BA-A96E-4AB4-87A9-C3F1FE3B32D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F2D19BA-A96E-4AB4-87A9-C3F1FE3B32D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
