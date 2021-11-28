@@ -23,6 +23,18 @@ namespace REM.Web.Controllers
             FormsAuthentication.SignOut();
         }
 
+        protected string GetReturnUrl()
+        {
+            if (Request.UrlReferrer != null && !string.IsNullOrEmpty(Request.UrlReferrer.AbsoluteUri))
+            //&& !Request.UrlReferrer.AbsolutePath.Contains("Login"))
+            {
+                return Request.UrlReferrer.AbsoluteUri;
+            }
+
+            return string.Empty;
+        }
+
+
         protected override void OnException(ExceptionContext filterContext)
         {
             HandleErrorInfo model = new HandleErrorInfo(filterContext.Exception,

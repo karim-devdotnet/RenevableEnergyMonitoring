@@ -14,6 +14,8 @@ namespace REM.Model.Entities
 
         [NotMapped]
         private DateTime _Timestamp;
+
+        [Display(Name ="Temps")]
         public DateTime Timestamp
         {
             get
@@ -33,18 +35,22 @@ namespace REM.Model.Entities
         /// <summary>
         /// 
         /// </summary>
+        [Display(Name ="Temperature du module")]
         public decimal TemperatureOfModule { get; set; }
         /// <summary>
         /// 
         /// </summary>
+        [Display(Name ="Temperature ambiante")]
         public decimal TemperatureAmbiante { get; set; }
         /// <summary>
         /// 
         /// </summary>
+        [Display(Name ="Humidite")]
         public decimal Humidity { get; set; }
         /// <summary>
         /// 
         /// </summary>
+        [Display(Name ="Vitesse du vent")]
         public decimal SpeedOfWind { get; set; }
 
         public virtual ICollection<Onduleur> Onduleurs{ get; set; }

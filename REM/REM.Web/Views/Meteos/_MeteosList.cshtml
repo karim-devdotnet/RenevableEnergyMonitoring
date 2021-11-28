@@ -1,0 +1,134 @@
+﻿@using PagedList.Mvc
+
+@model REM.Web.Models.MeteosListViewModel
+
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="bg-primary white-text">
+            <tr>
+                <th>
+                    <a class="white-text"
+                       data-ajax="true"
+                       data-ajax-loading="#myLoader"
+                       data-ajax-method="Post"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#result"
+                       href="@Url.Action("Index",new { sortOrder = ViewBag.TimestampSortParam, searchString = ViewBag.SearchString })">
+                        Temps
+                        <span class="@(ViewBag.CurrentSortOrder != "Timestamp" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-up"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "Timestamp_desc" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-down"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "Timestamp_desc" && ViewBag.CurrentSortOrder != "Timestamp" ? null:"hidden")"><i class="glyphicon glyphicon-resize-vertical"></i></span>
+                    </a>
+                </th>
+                <th>
+                    <a class="white-text"
+                       data-ajax="true"
+                       data-ajax-loading="#myLoader"
+                       data-ajax-method="Post"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#result"
+                       href="@Url.Action("Index",new { sortOrder = ViewBag.IrradianceSortParam, searchString = ViewBag.SearchString })">
+                        Irradiance
+                        <span class="@(ViewBag.CurrentSortOrder != "Irradiance" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-up"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "Irradiance_desc" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-down"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "Irradiance_desc" && ViewBag.CurrentSortOrder != "Irradiance" ? null:"hidden")"><i class="glyphicon glyphicon-resize-vertical"></i></span>
+                    </a>
+                </th>
+                <th>
+                    <a class="white-text"
+                       data-ajax="true"
+                       data-ajax-loading="#myLoader"
+                       data-ajax-method="Post"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#result"
+                       href="@Url.Action("Index",new { sortOrder = ViewBag.TemperatureOfModuleSortParam, searchString = ViewBag.SearchString })">
+                        Temperature du module
+                        <span class="@(ViewBag.CurrentSortOrder != "TemperatureOfModule" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-up"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "TemperatureOfModule_desc" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-down"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "TemperatureOfModule_desc" && ViewBag.CurrentSortOrder != "TemperatureOfModule" ? null:"hidden")"><i class="glyphicon glyphicon-resize-vertical"></i></span>
+                    </a>
+                </th>
+                <th>
+                    <a class="white-text"
+                       data-ajax="true"
+                       data-ajax-loading="#myLoader"
+                       data-ajax-method="Post"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#result"
+                       href="@Url.Action("Index",new { sortOrder = ViewBag.TemperatureAmbianteSortParam, searchString = ViewBag.SearchString })">
+                        Temperature ambiante
+                        <span class="@(ViewBag.CurrentSortOrder != "TemperatureAmbiante" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-up"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "TemperatureAmbiante_desc" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-down"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "TemperatureAmbiante_desc" && ViewBag.CurrentSortOrder != "TemperatureAmbiante" ? null:"hidden")"><i class="glyphicon glyphicon-resize-vertical"></i></span>
+                    </a>
+                </th>
+                <th>
+                    <a class="white-text"
+                       data-ajax="true"
+                       data-ajax-loading="#myLoader"
+                       data-ajax-method="Post"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#result"
+                       href="@Url.Action("Index",new { sortOrder = ViewBag.HumiditySortParam, searchString = ViewBag.SearchString })">
+                        Humidite
+                        <span class="@(ViewBag.CurrentSortOrder != "Humidity" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-up"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "Humidity_desc" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-down"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "Humidity_desc" && ViewBag.CurrentSortOrder != "Humidity" ? null:"hidden")"><i class="glyphicon glyphicon-resize-vertical"></i></span>
+                    </a>
+                </th>
+                <th>
+                    <a class="white-text"
+                       data-ajax="true"
+                       data-ajax-loading="#myLoader"
+                       data-ajax-method="Post"
+                       data-ajax-mode="replace"
+                       data-ajax-update="#result"
+                       href="@Url.Action("Index",new { sortOrder = ViewBag.SpeedOfWindSortParam, searchString = ViewBag.SearchString })">
+                        Vitesse du vent
+                        <span class="@(ViewBag.CurrentSortOrder != "SpeedOfWind" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-up"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "SpeedOfWind_desc" ? "hidden" : null)"><i class="glyphicon glyphicon-arrow-down"></i></span>
+                        <span class="@(ViewBag.CurrentSortOrder != "SpeedOfWind_desc" && ViewBag.CurrentSortOrder != "SpeedOfWind" ? null:"hidden")"><i class="glyphicon glyphicon-resize-vertical"></i></span>
+                    </a>
+                </th>
+                <th style="min-width:104px;"></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.MeteoPagedList)
+        {
+            <tr data-href="@Url.Action("Details", new { id = item.Id })">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Timestamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Irradiance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TemperatureOfModule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TemperatureAmbiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Humidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpeedOfWind)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @*<a href="@Html.Action("Details", new { id = item.Id })">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+<div class="panel-footer text-center">
+    <b>@Model.MeteoPagedList.TotalItemCount</b>
+
+    @Html.PagedListPager(Model.MeteoPagedList, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.SearchString }))
+</div>

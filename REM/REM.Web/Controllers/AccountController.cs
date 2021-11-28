@@ -50,7 +50,7 @@ namespace REM.Web.Controllers
         public ActionResult LogOff()
         {
             DoLogout();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Meteos");
         }
 
 
@@ -73,7 +73,7 @@ namespace REM.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Meteos");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

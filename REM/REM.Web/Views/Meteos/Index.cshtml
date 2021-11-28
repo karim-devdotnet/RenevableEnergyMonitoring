@@ -1,63 +1,55 @@
-﻿@model IEnumerable<REM.Model.Entities.Meteo>
+﻿@model REM.Web.Models.MeteosListViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<br />
+<br />
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Index</div>
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Timestamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Irradiance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TemperatureOfModule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TemperatureAmbiante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Humidity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SpeedOfWind)
-        </th>
-        <th></th>
-    </tr>
+        <div class="panel-body">
+            @using (Ajax.BeginForm("Index", "Meteos", new AjaxOptions
+            {
+                HttpMethod = "Post",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "result",
+                LoadingElementId = "myLoader"
+            }, new { autocomplete = "off" }))
+            {
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder = "Temps, Irradiance, Temperature,...", @class = "form-control" })
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <input type="submit" value="Chercher" class="btn btn-primary" />
+                        @Ajax.ActionLink("Annuler", "Index", "Users", new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           InsertionMode = InsertionMode.Replace,
+                           UpdateTargetId = "result",
+                           LoadingElementId = "myLoader"
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Timestamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Irradiance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemperatureOfModule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemperatureAmbiante)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Humidity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpeedOfWind)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                       },
+                        new
+                        {
+                            @class = "btn btn-default",
+                            onclick = "ClearAndSubmitForm(this);"
+                        })
+                    </div>
+                </div>
+            }
+        </div>
 
-</table>
+        <div id="result">
+            @Html.Partial("_MeteosList", Model)
+        </div>
+    </div>
+</div>
+
+
+

@@ -4,63 +4,101 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br />
+<br />
 
-<div>
-    <h4>Meteo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Timestamp)
-        </dt>
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Meteo Details</div>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Timestamp)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Timestamp)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Timestamp)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Irradiance)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Irradiance)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Irradiance)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Irradiance)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TemperatureOfModule)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TemperatureOfModule)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TemperatureOfModule)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TemperatureOfModule)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TemperatureAmbiante)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TemperatureAmbiante)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TemperatureAmbiante)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TemperatureAmbiante)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Humidity)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Humidity)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Humidity)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Humidity)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SpeedOfWind)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SpeedOfWind)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SpeedOfWind)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.SpeedOfWind)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="bg-primary white-text">
+                    <tr>
+                        <th>Designation</th>
+                        <th>VL_Vac</th>
+                        <th>VL_Fac</th>
+                        <th>VL_Pac</th>
+                        <th>VL_Vdc</th>
+                        <th>VL_Iac</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model.Onduleurs)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VL_Vac)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VL_Fac)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VL_Pac)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VL_Vdc)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VL_Iac)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="panel-footer">
+            <p>
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
