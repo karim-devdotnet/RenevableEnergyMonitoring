@@ -9,7 +9,9 @@
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title">Index</div>
+            <span class="panel-title">Liste des valeurs mesurees</span>
+            @*<span class="pull-right"><a href="@Html.Action("GraphicPreview","Meteos")" title="Aperçu graphique"><i class="glyphicon glyphicon-object-align-bottom"></i></a></span>*@
+            <span class="pull-right">@Html.ActionLink("Aperçu graphique", "GraphicPreview")</span>
         </div>
 
         <div class="panel-body">

@@ -168,6 +168,11 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\highcharts\highcharts.js" />
+    <Content Include="Scripts\highcharts\modules\accessibility.js" />
+    <Content Include="Scripts\highcharts\modules\export-data.js" />
+    <Content Include="Scripts\highcharts\modules\exporting.js" />
+    <Content Include="Scripts\highcharts\modules\series-label.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -200,6 +205,7 @@
     <Content Include="Views\Meteos\Index.cshtml" />
     <Content Include="Views\Meteos\_MeteosList.cshtml" />
     <Content Include="Views\Shared\_LoadingPage.cshtml" />
+    <Content Include="Views\Meteos\GraphicPreview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

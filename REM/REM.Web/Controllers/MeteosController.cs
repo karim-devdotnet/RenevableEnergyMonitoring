@@ -114,6 +114,11 @@ namespace REM.Web.Controllers
             return View(meteo);
         }
 
+        public ActionResult GraphicPreview()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
