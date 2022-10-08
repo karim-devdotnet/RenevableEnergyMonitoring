@@ -12,260 +12,254 @@
 
 <br />
 <br />
+
 <div class="container-fluid">
-    <div class="panel panel-default">
-            <div class="panel-heading">
-                <span class="panel-title">Aperçu graphique</span>
-                <span class="pull-right">@Html.ActionLink("Liste des valeurs mesurees", "Index")</span>
-            </div>
 
-            <div class="panel-body">
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="überschriftEins">
-                            <h4 class="panel-title">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEins" aria-expanded="true" aria-controls"collapseEins">
-                                    Energies des onduleurs
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseEins" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="überschriftEins">
-                            <div class="panel-body">
-                                <div id="container1"></div>
+    
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="überschriftEins">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEins" aria-expanded="true" aria-controls"collapseEins">
+                                Energies des onduleurs
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseEins" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="überschriftEins">
+                        <div class="panel-body">
+                            <div id="container1"></div>
 
-                                <script>
-                                    Highcharts.chart('container1', {
+                            <script>
+                                Highcharts.chart('container1', {
 
+                                    title: {
+                                        text: 'Energies des onduleurs, 2010-2016'
+                                    },
+
+                                    subtitle: {
+                                        text: 'Source: Centrale Ben Guerdene'
+                                    },
+
+                                    yAxis: {
                                         title: {
-                                            text: 'Energies des onduleurs, 2010-2016'
-                                        },
+                                            text: 'Energies(W/h)'
+                                        }
+                                    },
 
-                                        subtitle: {
-                                            text: 'Source: Centrale Ben Guerdene'
-                                        },
+                                    xAxis: {
+                                        accessibility: {
+                                            rangeDescription: 'Range: 2010 to 2017'
+                                        }
+                                    },
 
-                                        yAxis: {
-                                            title: {
-                                                text: 'Energies(W/h)'
+                                    legend: {
+                                        layout: 'vertical',
+                                        align: 'right',
+                                        verticalAlign: 'middle'
+                                    },
+
+                                    plotOptions: {
+                                        series: {
+                                            label: {
+                                                connectorAllowed: false
+                                            },
+                                            pointStart: 2010
+                                        }
+                                    },
+
+                                    series: [{
+                                        name: 'Onduleur 1',
+                                        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                                    }, {
+                                        name: 'Onduleur 2',
+                                        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+                                    }, {
+                                        name: 'Onduleur 3',
+                                        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+                                    }, {
+                                        name: 'Onduleur 4',
+                                        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+                                    }, {
+                                        name: 'Onduleur 5',
+                                        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+                                    }],
+
+                                    responsive: {
+                                        rules: [{
+                                            condition: {
+                                                maxWidth: 500
+                                            },
+                                            chartOptions: {
+                                                legend: {
+                                                    layout: 'horizontal',
+                                                    align: 'center',
+                                                    verticalAlign: 'bottom'
+                                                }
                                             }
-                                        },
+                                        }]
+                                    }
 
-                                        xAxis: {
-                                            accessibility: {
-                                                rangeDescription: 'Range: 2010 to 2017'
+                                });
+
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="überschriftZwei">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseZwei" aria-expanded="false" aria-controls"collapseZwei">
+                                Courant sortie des onduleurs
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseZwei" class="panel-collapse collapse" role="tabpanel" aria-labelledby="überschriftZwei">
+                        <div class="panel-body">
+                            <div id="container2"></div>
+
+                            <script>
+                                Highcharts.chart('container2', {
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    title: {
+                                        text: 'Courant sortie d Onduleur'
+                                    },
+                                    subtitle: {
+                                        text: 'Source: Centrale Ben Guerdene'
+                                    },
+                                    xAxis: {
+                                        categories: [
+                                            'Jan',
+                                            'Feb',
+                                            'Mar',
+                                            'Apr',
+                                            'May',
+                                            'Jun',
+                                            'Jul',
+                                            'Aug',
+                                            'Sep',
+                                            'Oct',
+                                            'Nov',
+                                            'Dec'
+                                        ],
+                                        crosshair: true
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Courant (A)'
+                                        }
+                                    },
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                                        footerFormat: '</table>',
+                                        shared: true,
+                                        useHTML: true
+                                    },
+                                    plotOptions: {
+                                        column: {
+                                            pointPadding: 0.2,
+                                            borderWidth: 0
+                                        }
+                                    },
+                                    series: [{
+                                        name: 'Onduleur 1',
+                                        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+                                    }, {
+                                        name: 'Onduleur 2',
+                                        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+                                    }, {
+                                        name: 'Onduleur 3',
+                                        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+                                    }, {
+                                        name: 'Onduleur 4',
+                                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                                    }]
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="überschriftDrei">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDrei" aria-expanded="false" aria-controls"collapseDrei">
+                                Pourcentage des puissances des onduleurs
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseDrei" class="panel-collapse collapse" role="tabpanel" aria-labelledby="überschriftDrei">
+                        <div class="panel-body">
+                            <div id="container3"></div>
+
+                            <script>
+                                Highcharts.chart('container3', {
+                                    chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: null,
+                                        plotShadow: false,
+                                        type: 'pie'
+                                    },
+                                    title: {
+                                        text: '% des puissances des onduleurs'
+                                    },
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                    },
+                                    accessibility: {
+                                        point: {
+                                            valueSuffix: '%'
+                                        }
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            allowPointSelect: true,
+                                            cursor: 'pointer',
+                                            dataLabels: {
+                                                enabled: true,
+                                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                                             }
-                                        },
-
-                                        legend: {
-                                            layout: 'vertical',
-                                            align: 'right',
-                                            verticalAlign: 'middle'
-                                        },
-
-                                        plotOptions: {
-                                            series: {
-                                                label: {
-                                                    connectorAllowed: false
-                                                },
-                                                pointStart: 2010
-                                            }
-                                        },
-
-                                        series: [{
+                                        }
+                                    },
+                                    series: [{
+                                        name: 'Onduleurs',
+                                        colorByPoint: true,
+                                        data: [{
                                             name: 'Onduleur 1',
-                                            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                                            y: 61.41,
+                                            sliced: true,
+                                            selected: true
                                         }, {
                                             name: 'Onduleur 2',
-                                            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+                                            y: 11.84
                                         }, {
                                             name: 'Onduleur 3',
-                                            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+                                            y: 10.85
                                         }, {
                                             name: 'Onduleur 4',
-                                            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+                                            y: 4.67
                                         }, {
                                             name: 'Onduleur 5',
-                                            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-                                        }],
-
-                                        responsive: {
-                                            rules: [{
-                                                condition: {
-                                                    maxWidth: 500
-                                                },
-                                                chartOptions: {
-                                                    legend: {
-                                                        layout: 'horizontal',
-                                                        align: 'center',
-                                                        verticalAlign: 'bottom'
-                                                    }
-                                                }
-                                            }]
-                                        }
-
-                                    });
-
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="überschriftZwei">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseZwei" aria-expanded="false" aria-controls"collapseZwei">
-                                    Courant sortie des onduleurs
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseZwei" class="panel-collapse collapse" role="tabpanel" aria-labelledby="überschriftZwei">
-                            <div class="panel-body">
-                                <div id="container2"></div>
-
-                                <script>
-                                    Highcharts.chart('container2', {
-                                        chart: {
-                                            type: 'column'
-                                        },
-                                        title: {
-                                            text: 'Courant sortie d Onduleur'
-                                        },
-                                        subtitle: {
-                                            text: 'Source: Centrale Ben Guerdene'
-                                        },
-                                        xAxis: {
-                                            categories: [
-                                                'Jan',
-                                                'Feb',
-                                                'Mar',
-                                                'Apr',
-                                                'May',
-                                                'Jun',
-                                                'Jul',
-                                                'Aug',
-                                                'Sep',
-                                                'Oct',
-                                                'Nov',
-                                                'Dec'
-                                            ],
-                                            crosshair: true
-                                        },
-                                        yAxis: {
-                                            min: 0,
-                                            title: {
-                                                text: 'Courant (A)'
-                                            }
-                                        },
-                                        tooltip: {
-                                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                                            footerFormat: '</table>',
-                                            shared: true,
-                                            useHTML: true
-                                        },
-                                        plotOptions: {
-                                            column: {
-                                                pointPadding: 0.2,
-                                                borderWidth: 0
-                                            }
-                                        },
-                                        series: [{
-                                            name: 'Onduleur 1',
-                                            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
+                                            y: 4.18
                                         }, {
-                                            name: 'Onduleur 2',
-                                            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-                                        }, {
-                                            name: 'Onduleur 3',
-                                            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-                                        }, {
-                                            name: 'Onduleur 4',
-                                            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
+                                            name: 'Onduleur 6',
+                                            y: 1.64
                                         }]
-                                    });
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="überschriftDrei">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDrei" aria-expanded="false" aria-controls"collapseDrei">
-                                    Pourcentage des puissances des onduleurs
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseDrei" class="panel-collapse collapse" role="tabpanel" aria-labelledby="überschriftDrei">
-                            <div class="panel-body">
-                                <div id="container3"></div>
-
-                                <script>
-                                    Highcharts.chart('container3', {
-                                        chart: {
-                                            plotBackgroundColor: null,
-                                            plotBorderWidth: null,
-                                            plotShadow: false,
-                                            type: 'pie'
-                                        },
-                                        title: {
-                                            text: '% des puissances des onduleurs'
-                                        },
-                                        tooltip: {
-                                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                                        },
-                                        accessibility: {
-                                            point: {
-                                                valueSuffix: '%'
-                                            }
-                                        },
-                                        plotOptions: {
-                                            pie: {
-                                                allowPointSelect: true,
-                                                cursor: 'pointer',
-                                                dataLabels: {
-                                                    enabled: true,
-                                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                                                }
-                                            }
-                                        },
-                                        series: [{
-                                            name: 'Onduleurs',
-                                            colorByPoint: true,
-                                            data: [{
-                                                name: 'Onduleur 1',
-                                                y: 61.41,
-                                                sliced: true,
-                                                selected: true
-                                            }, {
-                                                name: 'Onduleur 2',
-                                                y: 11.84
-                                            }, {
-                                                name: 'Onduleur 3',
-                                                y: 10.85
-                                            }, {
-                                                name: 'Onduleur 4',
-                                                y: 4.67
-                                            }, {
-                                                name: 'Onduleur 5',
-                                                y: 4.18
-                                            }, {
-                                                name: 'Onduleur 6',
-                                                y: 1.64
-                                            }]
-                                        }]
-                                    });
-                                </script>
-                            </div>
+                                    }]
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+</div>
 
 
 

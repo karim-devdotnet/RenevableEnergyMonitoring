@@ -11,7 +11,7 @@
 
 </head>
 <body onload="myLoader.style.display = 'none';">
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,14 +19,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("REM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("REM", "GraphicPreview", "Meteos", new { area = "" }, new { @class = "navbar-brand" })
                 @*<a href="@Html.Action("Index","Home")" class="navbar-brand">
                         <img src="~/Content/img/logotxt.png" width="300" height="76"/>
                     </a>*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Page d'accueil", "Index", "Meteos")</li>
+                    <li> <a href="~/Dashboard/index.html" target="_blank"> Dashboard </a></li>
+                    <li>@Html.ActionLink("Valeurs mesurees", "Index", "Meteos")</li>
+                    <li>@Html.ActionLink("Aperçu Graphique", "GraphicPreview", "Meteos")</li>
                     <li>@Html.ActionLink("informations", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
